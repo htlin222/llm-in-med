@@ -1,0 +1,21 @@
+# Declarations
+
+## Protocol Registration
+
+This systematic review was not prospectively registered in PROSPERO or any other systematic review registry. The review protocol, including search strategy, inclusion criteria, and thematic taxonomy, was developed prior to database searching and is documented in this manuscript.
+
+## Funding
+
+No external funding was received for this systematic review. The automated literature review pipeline was developed as part of an independent research initiative.
+
+## Competing Interests
+
+The authors declare no competing interests.
+
+## Data Availability
+
+The complete search results, screening records, extracted data, and analysis code are publicly available at the project GitHub repository (https://github.com/htlin222/llm-in-med). The BibTeX reference file containing all 55 included studies is available as supplementary material. The automated pipeline code used for database searching, deduplication, DOI validation, and manuscript generation is available at the same repository under an open-source license.
+
+## Author Contributions
+
+Literature search, quality screening, data extraction, and manuscript preparation were performed using an automated systematic review pipeline with human oversight at all critical decision points. The pipeline source code, search parameters, and quality filtering criteria are fully documented to ensure reproducibility.

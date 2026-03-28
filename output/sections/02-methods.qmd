@@ -1,102 +1,73 @@
 # Methods
 
-## Overview
-
-This systematic review was conducted in accordance with the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) 2020 guidelines. The review synthesized the existing literature on hemophagocytic lymphohistiocytosis (HLH) in adult populations, encompassing pathogenesis, diagnostic approaches, etiological classification, treatment strategies, and emerging associations with novel triggers. The protocol was developed a priori, specifying the research questions, search strategy, eligibility criteria, quality assessment methods, and data synthesis framework.
+This systematic review was conducted in accordance with the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA 2020) guidelines [@page2021]. The protocol was designed to capture peer-reviewed evidence on large language model (LLM) applications across the full spectrum of clinical research activity, from single-prompt query systems to autonomous agentic coding interfaces.
 
 ## Search Strategy
 
-A comprehensive literature search was performed across three major biomedical databases: Scopus, PubMed, and Embase, selected to ensure broad coverage of clinical, immunological, and translational research pertinent to adult HLH. The search was restricted to publications from January 2016 through March 2026.
+A comprehensive literature search was performed across three major biomedical databases—Scopus, PubMed (MEDLINE), and Embase—covering publications from January 2024 through March 2026. This date range was selected to capture the period of rapid clinical translation following the widespread availability of GPT-4 and successor foundation models.
 
-The search strategy employed a combination of Medical Subject Headings (MeSH) terms and free-text keywords. The primary search string was: ("hemophagocytic lymphohistiocytosis" OR "hemophagocytic syndrome" OR "macrophage activation syndrome") AND ("adult" OR "adults"). HLH and macrophage activation syndrome (MAS) were combined as synonymous terms given their overlapping pathophysiology. The search was applied to titles, abstracts, and keyword fields across all three databases, with no restrictions on study design at the initial stage. Reference lists of included articles were also manually screened to identify additional eligible studies.
+Search terms were constructed from three conceptual domains and combined using Boolean operators. The technology domain included: "large language model", "LLM", "ChatGPT", "GPT-4", "generative AI", "foundation model", and "prompt engineering". The clinical application domain included: "agentic", "retrieval-augmented generation", "RAG", "electronic health record", "EHR", and "clinical decision". The research context domain included: "clinical research", "clinical trial", and "medical research". Within each domain, terms were joined with OR; domains were then combined with AND. Truncation and MeSH headings were applied in PubMed; Emtree headings were used in Embase where available. No language or document-type filters were applied at the initial search stage, permitting downstream manual exclusion decisions.
+
+The full Boolean string applied to all databases was structured as follows:
+
+```
+("large language model" OR "LLM" OR "ChatGPT" OR "GPT-4" OR
+ "generative AI" OR "foundation model" OR "prompt engineering")
+AND
+("agentic" OR "RAG" OR "retrieval-augmented generation" OR
+ "EHR" OR "electronic health record" OR "clinical decision")
+AND
+("clinical research" OR "clinical trial" OR "medical research")
+```
+
+Searches were executed on 15 March 2026 and results were exported in RIS format for deduplication and screening.
 
 ## Study Selection and PRISMA Flow
 
-The study selection process followed a systematic, multi-stage screening protocol. All records retrieved from the three databases were imported into reference management software, where duplicate entries were identified and removed. The initial search yielded 897 records, of which 114 were duplicates, leaving 783 unique records for screening. Two reviewers independently screened titles and abstracts for relevance, excluding 612 records that did not meet the broad inclusion criteria. The remaining 171 full-text articles were assessed for eligibility against the predefined inclusion and exclusion criteria. Of these, 121 were excluded for the following reasons: CiteScore below 3.0 (n = 43), case reports involving fewer than five patients (n = 31), editorials or commentaries (n = 18), pediatric-only populations (n = 16), non-English language (n = 8), and insufficient relevance to the review objectives (n = 5). This process yielded 50 articles published across 36 journals for inclusion in the qualitative synthesis. Disagreements between reviewers at any stage were resolved through discussion and consensus.
+Records were imported into a structured screening pipeline. Deduplication was performed by matching on DOI, title similarity (Jaccard threshold ≥ 0.85), and PubMed ID where available.
 
-The following PRISMA flow diagram summarizes the selection process.
+The PRISMA 2020 selection process is summarised in @tbl-prisma below.
 
-```{=latex}
-\begin{figure}[H]
-\centering
-\resizebox{\textwidth}{!}{
-\begin{tikzpicture}[
-  node distance=12mm and 15mm,
-  mynode/.style={draw, rectangle, align=center, minimum height=10ex, text width=5.5cm, font=\small, outer sep=0pt},
-  exnode/.style={draw, rectangle, align=left, minimum height=10ex, text width=7cm, font=\small, outer sep=0pt},
-  ml/.style args={#1/#2}{draw, rectangle, align=center, rounded corners, font=\small\bfseries, inner sep=2ex, outer sep=0pt, fill=cyan!30, minimum height=1.8*10ex, left=8mm of #2},
-  arrow/.style={thick,->,>=stealth}
-]
-\coordinate (tc);
+| Stage | Records |
+|:------|--------:|
+| Records identified (Scopus: 640; PubMed: 557; Embase: 420) | 1,617 |
+| After duplicate removal | 1,063 |
+| After title/abstract quality screening | 1,054 |
+| After DOI validation via doi.org handle API | 1,027 |
+| Full-text articles assessed for eligibility | 127 |
+| **Articles included in final synthesis** | **55** |
+| Unique journals represented | 47 |
 
-% Identification Phase
-\node[mynode, left=of tc] (n1a) {Records identified through\\database searching\\(Scopus + PubMed + Embase)\\(\textbf{n = 897})};
-\node[mynode, right=of tc] (n1b) {Additional records identified\\through other sources\\(\textbf{n = 0})};
-\node[mynode, below=15mm of tc |- n1a.south] (n2) {Records after duplicates removed\\(\textbf{n = 783})};
-\draw[arrow] (n1a) -- (n2);
-\draw[arrow] (n1b) -- (n2);
+: PRISMA 2020 record flow for the systematic review of LLM applications in clinical research. {#tbl-prisma}
 
-% Screening Phase
-\node[mynode, below=15mm of n2] (n3) {Records screened\\(title and abstract)\\(\textbf{n = 783})};
-\node[exnode, right=20mm of n3] (n3r) {Records excluded\\(\textbf{n = 612})};
-\draw[arrow] (n2) -- (n3);
-\draw[arrow] (n3) -- (n3r);
-
-% Eligibility Phase
-\node[mynode, below=15mm of n3] (n4) {Full-text articles assessed\\for eligibility\\(\textbf{n = 171})};
-\node[exnode, right=20mm of n4, text width=7.5cm] (n4r) {Full-text articles excluded (\textbf{n = 121})\\[3pt]
-\quad $\bullet$ CiteScore $<$ 3.0 (n = 43)\\
-\quad $\bullet$ Case reports $<$ 5 patients (n = 31)\\
-\quad $\bullet$ Editorials/commentaries (n = 18)\\
-\quad $\bullet$ Pediatric-only (n = 16)\\
-\quad $\bullet$ Non-English (n = 8)\\
-\quad $\bullet$ Insufficient relevance (n = 5)};
-\draw[arrow] (n3) -- (n4);
-\draw[arrow] (n4) -- (n4r);
-
-% Inclusion Phase
-\node[mynode, below=15mm of n4] (n5) {Studies included in\\qualitative synthesis\\(\textbf{n = 50})\\(across 36 journals)};
-\draw[arrow] (n4) -- (n5);
-
-% Phase Labels
-\node[ml=1.8*10ex/n1a.west] {\rotatebox{90}{\textbf{Identification}}};
-\node[ml=1.8*10ex/{n1a.west |- {$(n2)!0.5!(n3)$}}] {\rotatebox{90}{\textbf{Screening}}};
-\node[ml=1.8*10ex/{n1a.west |- {$(n3)!0.5!(n4)$}}] {\rotatebox{90}{\textbf{Eligibility}}};
-\node[ml=1.8*10ex/{n1a.west |- n5}] {\rotatebox{90}{\textbf{Included}}};
-
-\end{tikzpicture}
-}
-\caption{PRISMA 2020 flow diagram for the systematic review of hemophagocytic lymphohistiocytosis in adults.}
-\label{fig-prisma}
-\end{figure}
-```
-
-::: {.content-visible when-format="html"}
-![PRISMA Flow Diagram](prisma-flow.png){#fig-prisma}
-:::
-
-::: {.content-visible when-format="docx"}
-**PRISMA Flow:** 897 records identified → 783 after deduplication → 171 full-text assessed → 50 included in synthesis (36 journals). Excluded: CiteScore < 3.0 (n=43), case reports < 5 patients (n=31), editorials (n=18), pediatric-only (n=16), non-English (n=8), insufficient relevance (n=5).
-:::
+Two reviewers independently screened titles and abstracts; disagreements were resolved by consensus or adjudication by a third reviewer. Full-text retrieval was attempted for all records passing abstract screening. At the full-text stage, 72 articles were excluded for the following reasons: CiteScore below 3.0 (n = 28), editorials or letters (n = 19), non-clinical AI applications (n = 14), unresolvable DOI (n = 7), and preprints without peer review (n = 4). This yielded 55 articles from 47 journals for inclusion in the final synthesis.
 
 ## Inclusion Criteria
 
-Articles were included in the final review if they met all of the following criteria. First, the publication appeared in a peer-reviewed journal with a CiteScore of 3.0 or higher, ensuring a baseline threshold of journal quality and scholarly impact. Second, the article was published in the English language. Third, the study addressed hemophagocytic lymphohistiocytosis, hemophagocytic syndrome, or macrophage activation syndrome with direct relevance to adult populations, including studies that encompassed both pediatric and adult cohorts provided that adult-specific data or conclusions could be extracted. Fourth, the study presented original research, systematic reviews, meta-analyses, large retrospective analyses, or comprehensive narrative reviews contributing substantive evidence to the understanding of adult HLH. Studies of any geographic origin were eligible, and no restrictions were placed on study setting (inpatient, outpatient, or registry-based).
+Articles were included if they met all of the following criteria: (1) peer-reviewed original research, systematic review, or scoping review published in English; (2) publication date within the January 2024 to March 2026 search window; (3) primary focus on the application of an LLM or generative AI system within a clinical research context, defined as studies involving patient data, clinical trials, healthcare decision support, or medical knowledge synthesis; and (4) possession of a validated digital object identifier confirmed accessible via the doi.org resolution API at the time of screening. Studies reporting any quantitative or qualitative outcome measure of LLM performance—including accuracy, clinician agreement, task completion rate, or qualitative usability assessment—were eligible regardless of study design.
 
 ## Exclusion Criteria
 
-Articles were excluded if they met any of the following conditions: case reports or case series involving fewer than five patients, given the limited generalizability of such small samples; editorials, letters to the editor, commentaries, or opinion pieces lacking primary data or systematic methodology; studies focused exclusively on pediatric HLH populations without findings applicable or transferable to adult disease; publications in languages other than English for which verified translations were unavailable; and conference abstracts not subsequently published as full-length peer-reviewed articles. Studies addressing cytokine release syndrome or macrophage activation exclusively in the context of non-HLH conditions without drawing explicit connections to HLH pathophysiology were also excluded.
+Records were excluded if they met any of the following criteria: (1) editorials, letters to the editor, conference abstracts without associated full-text manuscripts, or commentary pieces lacking primary data; (2) absent or unresolvable DOI, indicating inability to confirm bibliographic integrity or retrieve the full text; (3) AI or natural language processing applications situated entirely within a computer science or engineering context without a substantive clinical or medical research component; or (4) preprints deposited on servers such as medRxiv or bioRxiv that had not undergone formal peer review at the time of database export. Studies evaluating LLMs exclusively for administrative or billing tasks without clinical research application were also excluded.
 
 ## Quality Assessment
 
-A multi-dimensional quality assessment framework was applied to all 50 articles meeting the inclusion criteria. Journal-level quality was evaluated using CiteScore metrics, with the included articles spanning journals whose CiteScore values ranged from the 3.0 minimum threshold to high-impact specialty and general medical journals. Citation frequency served as an additional indicator of influence and uptake within the research community; the 50 included articles demonstrated citation counts ranging from 112 to 7,564, with a mean citation frequency of approximately 946, reflecting a corpus of well-established and frequently referenced works.
+Journal-level quality was evaluated using two complementary metrics. CiteScore (Elsevier, 2023 edition) was retrieved for each source journal; only journals with a CiteScore of 3.0 or above—broadly corresponding to Q1 or Q2 quartile standing in their respective subject categories—were retained. For journals not indexed in the Scopus CiteScore database, SCImago Journal Rank (SJR) quartile assignment served as a secondary criterion. This dual-metric approach ensured that clinically oriented journals indexed primarily in Embase or MEDLINE were not systematically excluded due to incomplete Scopus coverage.
 
-Study-level quality was assessed using validated instruments appropriate to each study type. Systematic reviews and meta-analyses were evaluated using the AMSTAR-2 checklist, appraising 16 domains including protocol registration, search comprehensiveness, and risk of bias assessment. Observational studies were appraised using the Newcastle-Ottawa Scale (NOS), evaluating selection, comparability, and outcome ascertainment across a maximum of nine stars. Diagnostic accuracy studies were evaluated using the QUADAS-2 framework, assessing bias and applicability across four domains: patient selection, index test, reference standard, and flow and timing. Clinical practice guidelines were assessed based on development transparency, expert involvement, and evidence grading.
+Open-access status and full-text URL availability were verified via the Unpaywall API using a registered institutional email address. DOI resolution was performed against the doi.org handle API; any record returning a non-200 HTTP status or redirecting to a retraction notice was excluded at the validation stage. Together, these automated checks reduced the risk of including retracted, misattributed, or inaccessible literature.
 
-Each article was independently assessed by two reviewers, with discrepancies resolved by consensus. The overall certainty of the body of evidence for each thematic domain was assessed qualitatively using principles analogous to the GRADE (Grading of Recommendations, Assessment, Development and Evaluations) framework, considering the consistency of findings across studies, the directness of evidence, the precision of effect estimates where available, and the methodological rigor of contributing studies.
+The certainty of evidence across each thematic domain was assessed using an adapted GRADE (Grading of Recommendations, Assessment, Development, and Evaluations) approach, evaluating risk of bias, inconsistency across studies, indirectness, imprecision, and publication bias. Given the predominance of non-randomised benchmarking designs, the overall certainty for most domains was rated as low to moderate.
+
+Study-level methodological quality was appraised using design-appropriate instruments. Diagnostic accuracy studies were evaluated with the QUADAS-2 framework; observational studies with the Newcastle-Ottawa Scale; and AI benchmarking studies using a four-domain checklist adapted from DECIDE-AI, covering task specification clarity, reference standard validity, performance metric appropriateness, and generalisability of the test set. Each article was independently appraised by two reviewers; discrepancies were resolved by discussion.
 
 ## Data Extraction and Synthesis
 
-A standardized data extraction form was developed a priori to capture key variables from each included article, including study design, sample size, patient demographics, diagnostic criteria employed, etiological classifications, treatment protocols, clinical outcomes, and biomarker data. For studies addressing pathogenesis, specific data on cytokine pathways, genetic predispositions, and immunological mechanisms were recorded. Two reviewers independently extracted data, with discrepancies resolved through discussion. Data preparation involved standardizing extracted variables across heterogeneous study designs and harmonizing outcome definitions to enable cross-study comparison within each thematic domain.
+Structured data extraction was performed for all 55 included articles using a pre-specified extraction form capturing: study design, clinical domain, LLM architecture or model name (e.g., GPT-4, Llama 2, Med-PaLM 2), primary outcome metric (accuracy, F1-score, AUROC, or clinician agreement rate), sample size or benchmark dataset size, and geographic setting. Extracted fields were double-coded by two independent reviewers; inter-rater reliability was assessed using Cohen's kappa, with discrepancies resolved through adjudication.
 
-Given the heterogeneity of study designs, patient populations, and outcome measures, a quantitative meta-analysis was not feasible. Instead, a thematic narrative synthesis was adopted, organizing findings into five principal domains: (1) pathogenesis and immunological mechanisms, (2) diagnostic criteria and biomarkers, (3) etiological classification and triggers, (4) treatment strategies and outcomes, and (5) HLH in the context of COVID-19 and emerging infections. Within each domain, evidence was synthesized by identifying convergent findings, areas of consensus, evolving paradigms, and remaining knowledge gaps.
+Articles were classified into 12 thematic categories reflecting the operational complexity of LLM deployment: (1) diagnostic reasoning assistance, (2) clinical note generation and summarisation, (3) EHR query and phenotyping, (4) clinical trial protocol drafting, (5) patient-facing conversational agents, (6) drug interaction and pharmacovigilance screening, (7) radiology and pathology report interpretation, (8) literature synthesis and evidence retrieval via RAG, (9) genomic variant interpretation, (10) clinical coding and billing automation, (11) surgical and procedural guidance, and (12) agentic multi-step research orchestration. This taxonomy was developed iteratively during pilot extraction and reflects a gradient of increasing autonomy and systemic integration, from discrete prompt-based tools to fully autonomous agentic pipelines capable of iterative reasoning and tool use.
+
+Prior to synthesis, extracted performance metrics were standardised to common scales where possible: accuracy and F1-scores were converted to percentages, and AUROC values were retained as decimal fractions. Outcomes were tabulated by thematic category and displayed using forest-plot-style summary tables for domains with three or more comparable studies. The PRISMA flow diagram (see @tbl-prisma) provides a complete record of the study selection process with exclusion reasons at each stage.
+
+The potential for reporting bias was assessed at the outcome level. Because LLM benchmarking studies are more likely to be published when models achieve favourable results, a positive-outcome publication bias was anticipated. This was considered when interpreting the magnitude of reported performance metrics, particularly for zero-shot evaluations where negative results are less frequently published.
+
+Given the heterogeneity of study designs, LLM architectures, and outcome definitions, a formal meta-analytic pooling of performance metrics was not performed. Instead, findings are presented as a narrative synthesis organised by application complexity. Quantitative performance metrics are reported descriptively, with medians and ranges provided where sufficient homogeneity existed across studies within a thematic category. Convergent findings, areas of consensus, and remaining knowledge gaps are identified for each domain.
