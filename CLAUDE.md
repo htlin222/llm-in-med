@@ -29,13 +29,13 @@ templates/        — Quarto templates
 uv venv && source .venv/bin/activate && uv pip install -e ".[dev]"
 
 # Run review
-lit-review review "topic" --term "term1" --target 50 --min-citescore 3.0
+op run --env-file=.env -- lit-review review "topic" --term "term1" --target 50 --min-citescore 3.0
 
 # Validate DOIs in existing BibTeX
 lit-review validate output/references.bib
 
 # Check API config
-lit-review check-config
+op run --env-file=.env -- lit-review check-config
 ```
 
 ## Environment Variables (in .env)

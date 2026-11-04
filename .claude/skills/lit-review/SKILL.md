@@ -80,7 +80,7 @@ When the user wants to explore/refine their topic before running:
 3. **Test queries** — Use the APIs to check result counts per database:
    ```bash
    cd /Users/htlin/robust-lit-review && source .venv/bin/activate
-   python -c "
+   op run --env-file=.env -- python -c "
    import asyncio
    from litreview.config import get_config
    from litreview.clients.scopus import ScopusClient
@@ -303,7 +303,7 @@ Present to user:
 
 The full pipeline is also available via CLI:
 ```bash
-lit-review review "TOPIC" --term "term1" --term "term2" --target 50 --min-citescore 3.0 -v
+op run --env-file=.env -- lit-review review "TOPIC" --term "term1" --term "term2" --target 50 --min-citescore 3.0 -v
 ```
 
 ## Quality Gates (NON-NEGOTIABLE)
